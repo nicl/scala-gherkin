@@ -1,4 +1,6 @@
-scala-gherkin
-=============
+Scala Gherkin
+===============
 
-Gherkin parser written in Scala
+A simple Scala project. To run:
+
+    sbt run
