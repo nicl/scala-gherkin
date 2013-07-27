@@ -10,16 +10,16 @@ Backus-Naur Form representation of Gherkin
 
 Thanks to Wikipedia for [this article](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form).
 
-feature ::= description { scenario }
-scenario ::= scenario-title given when then
-scenario-title ::= "Scenario:" { char }
-given ::= "Given:" step and*
-when ::= "When:" step and*
-then ::= "Then:" step and*
-and ::= "(And|But):" step
+    feature ::= description { scenario }
+    scenario ::= scenario-title given when then
+    scenario-title ::= "Scenario:" { char }
+    given ::= "Given:" step and*
+    when ::= "When:" step and*
+    then ::= "Then:" step and*
+    and ::= "(And|But):" step
 
-description ::= [all-chars]
-step ::= all-non-newline-chars*
+    description ::= [all-chars]
+    step ::= all-non-newline-chars*
 
 Note, there is a list of Gherkin keywords here: 
 https://github.com/cucumber/cucumber/wiki/Feature-Introduction .
