@@ -1,1 +1,6 @@
 target/
+.cache
+.classpath
+.project
+README.md~
+
