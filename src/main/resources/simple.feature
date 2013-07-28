@@ -1,5 +1,8 @@
 Feature: The Three Laws of Robotics (illustrative)
 
+  Taken from the Handbook of Robotics,
+  56th Edition, 2058 A.D.
+
   Scenario: First Law
     Given: a person and a robot
     When: the person is about to be harmed
