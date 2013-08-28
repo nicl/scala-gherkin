@@ -4,7 +4,7 @@ import scala.util.parsing.combinator.RegexParsers
 
 class GherkinParser extends RegexParsers {
   val charSeq = ".*".r
-  val nonScenarioCharSeq = "\\w*[^(Scenario:)].*".r
+  val nonScenarioCharSeq = "[^(Scenario:)].*".r
 
   def feature: Parser[Any] = "Feature:" ~ title ~ opt(description) ~ rep(scenario)
 
