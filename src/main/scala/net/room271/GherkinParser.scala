@@ -6,21 +6,33 @@ class GherkinParser extends RegexParsers {
   val charSeq = ".*".r
   val nonScenarioCharSeq = "[^(Scenario:)].*".r
 
-  def feature: Parser[Any] = "Feature:" ~ title ~ opt(description) ~ rep(scenario)
+  def feature: Parser[Feature] = "Feature:" ~> title ~ opt(description) ~ rep(scenario) ^^ {
+    case title~description~scenarios => Feature(title, description, scenarios)
+  }
 
-  def scenario: Parser[Any] = "Scenario:" ~ title ~ opt(given) ~ opt(when) ~ opt(then)
+  def scenario: Parser[Scenario] = "Scenario:" ~> title ~ opt(given) ~ opt(when) ~ opt(then) ^^ {
+    case title~given~when~then => Scenario(title, List(given, when, then).flatMap(_.getOrElse(Nil)))
+  }
 
-  def given: Parser[Any] = "Given:" ~ step ~ rep(and)
+  def given: Parser[List[Step]] = "Given:" ~> step ~ rep(and) ^^ {
+    case step~ands => Given(step) :: (ands map Given)
+  }
 
-  def when: Parser[Any] = "When:" ~ step ~ rep(and)
+  def when: Parser[List[Step]] = "When:" ~> step ~ rep(and) ^^ {
+    case step~ands => When(step) :: (ands map When)
+  }
 
-  def then: Parser[Any] = "Then:" ~ step ~ rep(and)
+  def then: Parser[List[Step]] = "Then:" ~> step ~ rep(and) ^^ {
+    case step~ands => Then(step) :: (ands map Then)
+  }
 
-  def and: Parser[Any] = ("And:" | "But:") ~ step
+  def and: Parser[String] = ("And:" | "But:") ~> step
 
-  def description: Parser[Any] = rep(nonScenarioCharSeq)
+  def description: Parser[String] = rep(nonScenarioCharSeq) ^^ {
+    case description => description.mkString("\n")
+  }
 
-  def title: Parser[Any] = charSeq
+  def title: Parser[String] = charSeq
 
-  def step: Parser[Any] = charSeq
+  def step: Parser[String] = charSeq
 }
