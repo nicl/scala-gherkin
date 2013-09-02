@@ -17,20 +17,21 @@ Thanks to Wikipedia for [this article](https://en.wikipedia.org/wiki/Extended_Ba
     then ::= "Then:" step and*
     and ::= "(And|But):" step
 
-    description ::= all-chars description?
-    title ::= all-non-newline-chars title?
-    step ::= all-non-newline-chars step?
+    description ::= all-chars*
+    title ::= all-chars*
+    step ::= all-chars*
 
-Note, there is a list of Gherkin keywords here: 
-https://github.com/cucumber/cucumber/wiki/Feature-Introduction .
+Note, 'all-chars' here indicates any line of text (that is all characters
+except newline).
 
-I still need to add several, including:
+Some Gherkin keywords are currently not implemented, including:
 
 * background
 * scenario-outline
 * examples
 
+There is a full list of Gherkin keywords here: 
+https://github.com/cucumber/cucumber/wiki/Feature-Introduction .
+
 The Gherkin github repo has a BNF defined here:
 https://github.com/cucumber/gherkin/wiki/BNF .
-
-But I don't want to look at that yet! Better to struggle on my own first!
