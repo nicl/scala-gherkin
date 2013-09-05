@@ -19,7 +19,7 @@ Thanks to Wikipedia for [this article](https://en.wikipedia.org/wiki/Extended_Ba
 
     description ::= all-chars*
     title ::= all-chars*
-    step ::= all-chars*
+    step ::= all-chars* textString?
 
 Note, 'all-chars' here indicates any line of text (that is all characters
 except newline).
